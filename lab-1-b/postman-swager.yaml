@@ -1,0 +1,255 @@
+openapi: 3.0.0
+info:
+  title: test123
+  version: 1.0.0
+servers:
+  - url: http://localhost:3333
+paths:
+  /sign-up:
+    post:
+      tags:
+        - General
+      summary: http://localhost:3333/sign-up
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Anna 2
+                gender: Male
+                dateOfBirth: '2008-01-01'
+                email: email@email.com
+                password: pass
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                _id: 62a79e55266025eb05e0075b
+                name: Anna 2
+                email: email@email.com
+                gender: Male
+                dateOfBirth: '2008-01-01'
+  /sign-in:
+    post:
+      tags:
+        - General
+      summary: http://localhost:3333/sign-in
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Anna 2
+                gender: Male
+                dateOfBirth: '2008-01-01'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /profile:
+    get:
+      tags:
+        - General
+      summary: http://localhost:3333/profile
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QzQHRlc3QudGVzdCIsImlhdCI6MTY1NTE1MDQ5MCwiZXhwIjoxNjU1MjM2ODkwfQ.IX3pKiOTuUcqD4SwT2eSCn4cr-1M1jPm3leJHIROnjs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: http://localhost:3333/profile
+                  value:
+                    _id: 62a796c13ee2c442455ccb27
+                    name: Anna 2
+                    email: test3@test.test
+                    gender: Male
+                    dateOfBirth: '2008-01-01'
+    post:
+      tags:
+        - General
+      summary: http://localhost:3333/profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Anna 2
+                gender: Male
+                dateOfBirth: '2001-01-01'
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QzQHRlc3QudGVzdCIsImlhdCI6MTY1NTE1MDQ5MCwiZXhwIjoxNjU1MjM2ODkwfQ.IX3pKiOTuUcqD4SwT2eSCn4cr-1M1jPm3leJHIROnjs
+      responses:
+        '200':
+          description: OK
+
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: http://localhost:3333/profile
+                  value:
+                    _id: 62a796c13ee2c442455ccb27
+                    name: Anna 2
+                    email: test3@test.test
+                    gender: Male
+                    dateOfBirth: '2008-01-01'
+  /blog:
+    post:
+      tags:
+        - General
+      summary: http://localhost:3333/blog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                description: Blog
+                title: Title
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QzQHRlc3QudGVzdCIsImlhdCI6MTY1NTE1MDQ5MCwiZXhwIjoxNjU1MjM2ODkwfQ.IX3pKiOTuUcqD4SwT2eSCn4cr-1M1jPm3leJHIROnjs
+      responses:
+        '200':
+          description: OK
+
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: http://localhost:3333/profile Copy
+                  value:
+                    _id: 62a79f11266025eb05e0075c
+                    title: Title
+                    description: Blog
+                    author: test3@test.test
+                    comments: []
+  /blog/comment:
+    post:
+      tags:
+        - General
+      summary: http://localhost:3333/blog/comment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                postId: 62a79f11266025eb05e0075c
+                description: Hello world
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QzQHRlc3QudGVzdCIsImlhdCI6MTY1NTE1MDQ5MCwiZXhwIjoxNjU1MjM2ODkwfQ.IX3pKiOTuUcqD4SwT2eSCn4cr-1M1jPm3leJHIROnjs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: http://localhost:3333/blog/comment
+                  value:
+                    _id: 62a79f11266025eb05e0075c
+                    title: Title
+                    description: Blog
+                    author: test3@test.test
+                    comments: [{"description": "Hello world",
+                                "_id": "62a79f3a266025eb05e0075d",
+                                "author": "test3@test.test"  }]
+
+
+
+  /blog/comment/62a79f11266025eb05e0075c/62a79f3a266025eb05e0075d:
+    delete:
+      tags:
+        - General
+      summary: http://localhost:3333/blog/comment
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QzQHRlc3QudGVzdCIsImlhdCI6MTY1NTE1MDQ5MCwiZXhwIjoxNjU1MjM2ODkwfQ.IX3pKiOTuUcqD4SwT2eSCn4cr-1M1jPm3leJHIROnjs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: http://localhost:3333/blog/comment
+                  value:
+                    _id: 62a79f11266025eb05e0075c
+                    title: Title
+                    description: Blog
+                    author: test3@test.test
+                    comments: []
+  /blog/62a79f11266025eb05e0075c:
+    delete:
+      tags:
+        - General
+      summary: http://localhost:3333/blog
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QzQHRlc3QudGVzdCIsImlhdCI6MTY1NTE1MDQ5MCwiZXhwIjoxNjU1MjM2ODkwfQ.IX3pKiOTuUcqD4SwT2eSCn4cr-1M1jPm3leJHIROnjs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: http://localhost:3333/blog
+                  value:
+                    _id: 62a79f11266025eb05e0075c
+                    title: Title
+                    description: Blog
+                    author: test3@test.test
+                    comments: []
